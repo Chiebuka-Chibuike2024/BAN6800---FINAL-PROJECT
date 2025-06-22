@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Retail Price Prediction</title>
+</head>
+<body>
+    <h2>Enter Retail Product Details</h2>
+    <form action="/predict" method="post">
+        {% for name in ['qty', 'total_price', 'freight_price', 'product_name_lenght',
+                        'product_description_lenght', 'product_photos_qty', 'product_weight_g',
+                        'product_score', 'customers', 'weekday', 'weekend', 'holiday',
+                        'month', 'year', 's', 'volume', 'comp_1', 'ps1', 'fp1',
+                        'comp_2', 'ps2', 'fp2', 'comp_3', 'ps3', 'fp3', 'lag_price'] %}
+            <label for="{{ name }}">{{ name.replace('_', ' ').title() }}:</label><br>
+            <input type="number" step="any" name="{{ name }}" required><br><br>
+        {% endfor %}
+        <input type="submit" value="Predict Price">
+    </form>
+
+    {% if prediction %}
+        <h3>{{ prediction }}</h3>
+    {% endif %}
+</body>
+</html>
+
